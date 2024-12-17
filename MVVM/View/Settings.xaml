@@ -1,0 +1,51 @@
+<UserControl x:Class="PokeWish.MVVM.View.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:behaviors="clr-namespace:PokeWish.MVVM.Behaviors">
+    <Grid Background="#8fbf4d">
+        <TextBlock Text="Database parameters"
+                   FontSize="24" FontWeight="Bold" Foreground="White"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Margin="0,20,0,10"
+                   TextWrapping="Wrap"
+                   Width="400" />
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
+            <TextBlock Text="Indicate your database server informations"
+                       FontSize="16" FontWeight="SemiBold" Foreground="White"
+                       Margin="0,0,0,10"
+                       TextWrapping="Wrap"
+                       Width="400" />
+
+            <TextBlock Text="Reminder : you're supposed to have a SQL server running, we expect you to know your connexion parameters."
+                       FontSize="14" FontWeight="Normal" Foreground="White"
+                       Margin="0,0,0,20"
+                       TextWrapping="Wrap"
+                       Width="400" />
+
+            <TextBox Width="400" Height="30"
+                     HorizontalAlignment="Center" Margin="0,0,0,10"
+                     FontSize="14" Padding="5"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding DataSource, UpdateSourceTrigger=PropertyChanged}"
+                     behaviors:TextBoxPlaceholderBehavior.Placeholder="Enter database server address..." />
+
+            <TextBox Width="400" Height="30"
+                     HorizontalAlignment="Center" Margin="0,0,0,10"
+                     FontSize="14" Padding="5"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding InitialCatalog, UpdateSourceTrigger=PropertyChanged}"
+                     behaviors:TextBoxPlaceholderBehavior.Placeholder="Enter Catalog name..." />
+
+            <!---->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Dev's DB" Width="120" Height="35"
+                        Command="{Binding LogAttemptToDBCommandAsDefault}"
+                        HorizontalAlignment="Center" Margin="10,10,10,10" />
+                <Button Content="Log DB" Width="120" Height="35"
+                        Command="{Binding LogAttemptToDBCommand}"
+                        HorizontalAlignment="Center" Margin="10,10,10,10" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

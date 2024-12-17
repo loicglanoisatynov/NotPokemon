@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="PokeWish.MVVM.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:VM="clr-namespace:PokeWish.MVVM.ViewModel"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:View="clr-namespace:PokeWish.MVVM.View"
+             mc:Ignorable="d">
+
+    <!-- Associe le DataContext à MainViewVM -->
+    <UserControl.DataContext>
+        <VM:MainViewVM />
+    </UserControl.DataContext>
+
+    <!-- Layout principal -->
+    <Grid>
+        <!-- Colonnes : Navigation à gauche et contenu à droite -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu de navigation latéral -->
+        <StackPanel Name="NavigationMenu" Orientation="Vertical" Grid.Column="0" Background="LightGray" VerticalAlignment="Stretch">
+            <Button Content="Fight !" Command="{Binding NavigateToFightSubview}" Margin="5" />
+            <Button Content="Pokemons" Command="{Binding NavigateToPokemonsSubview}" Margin="5" />
+            <TextBlock Text=" You're logged as " />
+            <TextBlock Text="{Binding Username}" />
+            <Button Content="Log out" Command="{Binding NavigateToLoginRegisterView}" Margin="5" />
+            <Button Content="Shut down DB" Command="{Binding NavigateToSettingsView}" Margin="5" />
+        </StackPanel>
+
+        <!-- Zone centrale pour les vues dynamiques -->
+        <ContentControl Content="{Binding CurrentVM}" Grid.Column="1" />
+    </Grid>
+</UserControl>

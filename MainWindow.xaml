@@ -1,0 +1,52 @@
+﻿<Window x:Class="PokeWish.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:VM="clr-namespace:PokeWish.MVVM.ViewModel"
+        Title="PokeWish" Height="450" Width="800"
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        xmlns:view="clr-namespace:PokeWish.MVVM.View">
+    <Window.DataContext>
+        <VM:MainWindowVM />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid Background="#2a453b" Height="30" VerticalAlignment="Top" Name="Metabuttons" Panel.ZIndex="2">
+            <!-- Titre de la fenêtre -->
+            <TextBlock Text="PokeWish"
+                       VerticalAlignment="Center"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       Margin="10,0,0,0" />
+
+            <!-- Boutons pour réduire et fermer -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- Bouton Réduire -->
+                <Button Content="—"
+                        Width="30" Height="30"
+                        Background="Transparent"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Click="MinimizeWindow"
+                        ToolTip="Réduire"
+                        BorderThickness="0" />
+
+                <!-- Bouton Fermer -->
+                <Button Content="X"
+                        Width="30" Height="30"
+                        Background="Transparent"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Click="CloseWindow"
+                        ToolTip="Fermer"
+                        BorderThickness="0" />
+            </StackPanel>
+        </Grid>
+
+        <ContentControl x:Name="MainContent" Content="{Binding CurrentView}" Margin="0,30,0,0" />
+        <view:MusicControl HorizontalAlignment="Right"
+                           VerticalAlignment="Top"
+                           Margin="10"
+                           Panel.ZIndex="1" />
+    </Grid>
+</Window>
